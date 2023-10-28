@@ -29,8 +29,12 @@ public class CartService {
         cart.reduceFromCart(item);
     }
 
-    public void removeFromCart(CartItem item) {
-        cart.removeFromCart(item);
+    public double getTotal() {
+        return cart.getTotalPrice();
     }
 
+
+    public String getCurrency() {
+        return cart.getCurrency();
+    }
 }

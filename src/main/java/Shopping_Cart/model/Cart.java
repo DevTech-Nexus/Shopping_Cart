@@ -17,7 +17,6 @@ import java.util.Set;
  * Cart is NOT persisted in the database.
  */
 @Data
-
 public class Cart {
 
     //using a Set. Sets do not allow duplicate entries. This will come in handy when we add items to the cart.
@@ -45,6 +44,7 @@ public class Cart {
         } else {
             cartItems.add(cartItem);
         }
+        totalPrice = totalPrice + cartItem.getPrice();
 
     }
 
@@ -62,11 +62,9 @@ public class Cart {
         } else {
             cartItems.add(cartItem);
         }
+        totalPrice = totalPrice - cartItem.getPrice();
     }
 
-    public void removeFromCart(CartItem cartItem) {
-        cartItems.remove(cartItem);
-    }
 
 
 }
