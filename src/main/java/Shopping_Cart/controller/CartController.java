@@ -42,4 +42,9 @@ public class CartController {
     public String getCurrency() {
         return cartService.getCurrency();
     }
+
+    @GetMapping("/session")
+    public String getSession() {
+        return cartService.getSession();
+    }
 }

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CartTest {
 
-    private Cart cart = new Cart(1, "USD");
+    private Cart cart = new Cart();
     @Test
     void addToCart() {
         CartItem item = new CartItem(1, "phone", 100, "USD", 1, "imgUrl");

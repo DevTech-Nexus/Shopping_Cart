@@ -57,4 +57,8 @@ public class CartService {
         checkSessionUp();
         return session.getAttribute("cart") == null ? null : ((Cart) session.getAttribute("cart")).getCurrency();
     }
+
+    public String getSession() {
+        return session.getId();
+    }
 }
