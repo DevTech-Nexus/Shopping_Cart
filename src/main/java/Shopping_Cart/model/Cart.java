@@ -1,55 +1,29 @@
 package Shopping_Cart.model;
 
 
+import lombok.Data;
 import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "tablename")
-public class Cart {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/**
+ * Cart model.
+ * Holds cart items.
+ * One cart created per session.
+ * Cart is NOT persisted in the database.
+ */
+@Data
+public class Cart {
 
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    //using a Set. Sets do not allow duplicate entries. This will come in handy when we add items to the cart.
+    private Set<CartItem> cartItems;
     private User user;
+    private double totalPrice;
+    private String currency;
+    private String status;
 
-    @OneToMany(mappedBy = "cart")
-    private Set<CartItem> items;
-
-    public Cart() {
-    }
-
-    public Cart(User user) {
-        this.user = user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<CartItem> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<CartItem> items) {
-        this.items = items;
-    }
 }

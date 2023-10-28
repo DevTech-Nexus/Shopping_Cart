@@ -29,4 +29,12 @@ public class CartItem {
 
     private String imgUrl;
 
+    public void increment() {
+        stockQuantity++;
+    }
+
+    public void decrement() {
+        stockQuantity--;
+    }
+
 }

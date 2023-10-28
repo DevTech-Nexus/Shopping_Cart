@@ -4,8 +4,11 @@ import Shopping_Cart.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Cart service.
+ * Maintains instance information using HttpSession
+ */
 @Service
 public class CartService {
-    
     
 }
