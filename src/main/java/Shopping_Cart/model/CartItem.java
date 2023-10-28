@@ -1,40 +1,28 @@
 package Shopping_Cart.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
 
+/**
+ * CartItem model.
+ * Holds cart item information.
+ */
 @Data
+@AllArgsConstructor
 public class CartItem {
 
     private int id;
 
     private String productName;
 
-    private String description;
-
-    private String category;
-
-    private String brand;
-
     private double price;
 
     private String currency;
 
-    private float weight;
-
-    private String dimensions;
-
-    private int stockQuantity;
+    private int quantity;
 
     private String imgUrl;
 
-    public void increment() {
-        stockQuantity++;
-    }
-
-    public void decrement() {
-        stockQuantity--;
-    }
 
 }

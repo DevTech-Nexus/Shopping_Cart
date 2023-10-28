@@ -2,9 +2,11 @@ package Shopping_Cart.model;
 
 
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -17,13 +19,32 @@ import java.util.Set;
 @Data
 public class Cart {
 
-    private int id;
-
     //using a Set. Sets do not allow duplicate entries. This will come in handy when we add items to the cart.
     private Set<CartItem> cartItems;
     private User user;
     private double totalPrice;
     private String currency;
-    private String status;
+
+    public void addToCart(CartItem cartItem) {
+        if (cartItems.contains(cartItem)) {
+            cartItems.stream().filter(item -> item.equals(cartItem)).forEach(item -> item.setQuantity(item.getQuantity() + 1));
+        } else {
+            cartItems.add(cartItem);
+        }
+
+    }
+
+    public void reduceFromCart(CartItem cartItem) {
+        if (cartItems.contains(cartItem)) {
+            cartItems.stream().filter(item -> item.equals(cartItem)).forEach(item -> item.setQuantity(item.getQuantity() - 1));
+        } else {
+            cartItems.remove(cartItem);
+        }
+    }
+
+    public void removeFromCart(CartItem cartItem) {
+        cartItems.remove(cartItem);
+    }
+
 
 }
