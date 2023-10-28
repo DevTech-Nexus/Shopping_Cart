@@ -2,10 +2,7 @@ package Shopping_Cart.model;
 
 
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.User;
 
-import javax.persistence.*;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -31,7 +28,7 @@ public class Cart {
     }
 
     public void addToCart(CartItem cartItem) {
-        if (cartItems.contains(cartItem)) {
+        if (cartItems.stream().anyMatch(i -> i.getId() == cartItem.getId())) {
             try {
                 CartItem item = cartItems.stream().filter(i -> i.getId() == cartItem.getId()).findFirst().get();
                 cartItems.remove(item);
@@ -49,18 +46,21 @@ public class Cart {
     }
 
     public void reduceFromCart(CartItem cartItem) {
-        if (cartItems.contains(cartItem)) {
+        if (cartItems.stream().anyMatch(i -> i.getId() == cartItem.getId())) {
             try {
                 CartItem item = cartItems.stream().filter(i -> i.getId() == cartItem.getId()).findFirst().get();
                 cartItems.remove(item);
                 item.setQuantity(item.getQuantity() - 1);
-                cartItems.add(item);
+                if(item.getQuantity() == 0) {
+                    cartItems.remove(item);
+                }
+                else { //re-add updated item
+                    cartItems.add(item);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-        } else {
-            cartItems.add(cartItem);
         }
         totalPrice = totalPrice - cartItem.getPrice();
     }

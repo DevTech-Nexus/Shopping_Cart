@@ -2,7 +2,6 @@ package Shopping_Cart.service;
 
 import Shopping_Cart.model.Cart;
 import Shopping_Cart.model.CartItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +15,11 @@ import java.util.Set;
 public class CartService {
 
     private Cart cart;
+
+    public Cart initializeCart(int user, String currency) {
+        cart = new Cart(user, currency);
+        return cart;
+    }
 
     public Set<CartItem> getCartItems() {
         return cart.getCartItems();

@@ -1,5 +1,6 @@
 package Shopping_Cart.controller;
 
+import Shopping_Cart.dto.setupDTO;
 import Shopping_Cart.model.Cart;
 import Shopping_Cart.model.CartItem;
 import Shopping_Cart.service.CartService;
@@ -18,6 +19,11 @@ public class CartController {
     @GetMapping("/")
     public Set<CartItem> getCart() {
         return cartService.getCartItems();
+    }
+
+    @PostMapping("/initialize")
+    public Cart initializeCart(@RequestBody setupDTO setup) {
+        return cartService.initializeCart(setup.getUser(), setup.getCurrency());
     }
 
     @PostMapping("/")
