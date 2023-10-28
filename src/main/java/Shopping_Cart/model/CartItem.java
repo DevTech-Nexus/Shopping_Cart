@@ -1,63 +1,32 @@
 package Shopping_Cart.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "tablename")
+@Data
 public class CartItem {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private String productName;
 
-    private Integer quantity;
+    private String description;
 
-    public CartItem() {
-    }
+    private String category;
 
-    public CartItem(Cart cart, Product product, Integer quantity) {
-        this.cart = cart;
-        this.product = product;
-        this.quantity = quantity;
-    }
+    private String brand;
 
-    public Long getId() {
-        return id;
-    }
+    private double price;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String currency;
 
-    public Cart getCart() {
-        return cart;
-    }
+    private float weight;
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+    private String dimensions;
 
-    public Product getProduct() {
-        return product;
-    }
+    private int stockQuantity;
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+    private String imgUrl;
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 }
