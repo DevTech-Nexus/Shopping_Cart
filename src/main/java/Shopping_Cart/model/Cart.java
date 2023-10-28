@@ -18,15 +18,8 @@ public class Cart {
 
     //using a Set. Sets do not allow duplicate entries. This will come in handy when we add items to the cart.
     private Set<CartItem> cartItems = new java.util.HashSet<>();
-    private int user;
     private double totalPrice = 0;
-    private String currency;
-
-    public Cart(int user, String currency) {
-        this.user = user;
-        this.currency = currency;
-    }
-
+    private String currency = "USD";
     public void addToCart(CartItem cartItem) {
         if (cartItems.stream().anyMatch(i -> i.getId() == cartItem.getId())) {
             try {

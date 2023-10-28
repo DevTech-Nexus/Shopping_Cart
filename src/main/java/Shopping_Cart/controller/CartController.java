@@ -7,10 +7,12 @@ import Shopping_Cart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/carts")
+@CrossOrigin
 public class CartController {
 
     @Autowired
@@ -19,11 +21,6 @@ public class CartController {
     @GetMapping("/")
     public Set<CartItem> getCart() {
         return cartService.getCartItems();
-    }
-
-    @PostMapping("/initialize")
-    public Cart initializeCart(@RequestBody setupDTO setup) {
-        return cartService.initializeCart(setup.getUser(), setup.getCurrency());
     }
 
     @PostMapping("/")
